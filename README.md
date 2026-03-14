@@ -80,8 +80,7 @@ The solver successfully captures the viscous displacement thickness, which cause
 
 ## Files in Repository
 
-- `nsf_solver_corrected.m` - Main MATLAB solver implementation
-- `nsf_solver_enhanced_optimized.m` - Enhanced version with optimizations
+- `nsf_solver_main.m` - MATLAB solver implementation
 - `README.md` - This file
 - `LICENSE` - Project license
 
@@ -171,16 +170,9 @@ Ready for integration with Direct Simulation Monte Carlo (DSMC) methods for non-
 
 ---
 
-## License
-
-[Your License Here]
-
----
-
 ## Author
 
-[Thilak S]
-
+Thilak S \
 **Status:** Production-Ready  
 **Last Updated:** January 28, 2026  
 **Version:** 2.0

@@ -99,24 +99,6 @@ The solver successfully captures the viscous displacement thickness, which cause
 - MATLAB R2020a or later
 - Computational resources: ~68 MB memory
 
-### Running the Solver
-
-```matlab
->> nsf_solver_corrected
-```
-
-Expected output:
-- Convergence at ~17,650 iterations
-- 9-panel figure with complete solution fields
-- Console output with shock properties
-- Runtime: 4-5 minutes
-
----
-
-## Documentation
-
-For complete technical documentation, see the accompanying LaTeX document or academic references.
-
 ### Key Equations
 
 **Conserved Variables:**

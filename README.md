@@ -53,9 +53,13 @@ Features a specialized no-slip wall condition at the wedge surface to accurately
 
 **Convergence:** L² residual ≈ 10⁻⁷
 
-**Iteration Steps:** 24,000
+**Iteration Steps:** 12,500
 
-![Final converged solution for oblique shock-wedge interaction at step 24000](images/solver_output.png)
+<p align="center">
+  <img src="images/solver_output.png" alt="Solution fields at step 12500" width="900"/>
+  <br>
+  <em>Figure 1: Flow field solution (Density, Pressure, Temperature, Mach Number, Speed, Velocity) at step 12,500 for Mach 2.5 flow over a 15° wedge</em>
+</p>
 
 ### Key Finding
 

@@ -56,7 +56,7 @@ Features a specialized no-slip wall condition at the wedge surface to accurately
 **Iteration Steps:** 12,500
 
 <p align="center">
-  <img src="solver_output.png" alt="Solution fields at step 12500" width="900"/>
+  <img src="step_12500.png" alt="Solution fields at step 12500" width="900"/>
   <br>
   <em>Flow field solution (Density, Pressure, Temperature, Mach Number, Speed, Velocity) at step 12,500 for Mach 2.5 flow over a 15° wedge</em>
 </p>

@@ -55,6 +55,8 @@ Features a specialized no-slip wall condition at the wedge surface to accurately
 
 **Iteration Steps:** 24,000
 
+![Final converged solution for oblique shock-wedge interaction at step 24000](images/solver_output.png)
+
 ### Key Finding
 
 The solver successfully captures the viscous displacement thickness, which causes a slight increase in the effective wedge angle. This results in a shock angle that is marginally higher than the theoretical inviscid prediction, validating the solver's ability to model real-gas effects.

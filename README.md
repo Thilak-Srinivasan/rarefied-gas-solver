@@ -113,15 +113,19 @@ For complete technical documentation, see the accompanying LaTeX document or aca
 ### Key Equations
 
 **Conserved Variables:**
+
 $$\mathbf{U} = \begin{pmatrix} \rho \\ \rho u \\ \rho v \\ \rho E \end{pmatrix}$$
 
 **Inviscid Flux (X-direction):**
+
 $$\mathbf{F} = \begin{pmatrix} \rho u \\ \rho u^2 + p \\ \rho uv \\ \rho u H \end{pmatrix}$$
 
 **Inviscid Flux (Y-direction):**
+
 $$\mathbf{G} = \begin{pmatrix} \rho v \\ \rho uv \\ \rho v^2 + p \\ \rho v H \end{pmatrix}$$
 
 **Stress Tensor Components:**
+
 $$\tau_{xx} = \mu \left( \frac{4}{3}\frac{\partial u}{\partial x} - \frac{2}{3}\frac{\partial v}{\partial y} \right)$$
 
 $$\tau_{yy} = \mu \left( \frac{4}{3}\frac{\partial v}{\partial y} - \frac{2}{3}\frac{\partial u}{\partial x} \right)$$
@@ -129,6 +133,7 @@ $$\tau_{yy} = \mu \left( \frac{4}{3}\frac{\partial v}{\partial y} - \frac{2}{3}\
 $$\tau_{xy} = \mu \left( \frac{\partial u}{\partial y} + \frac{\partial v}{\partial x} \right)$$
 
 **Total Energy:**
+
 $$E = e + \frac{1}{2}(u^2 + v^2) = \frac{p}{\rho(\gamma - 1)} + \frac{1}{2}(u^2 + v^2)$$
 
 where γ = 1.4 is the specific heat ratio (diatomic gases).

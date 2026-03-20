@@ -1,9 +1,8 @@
 # Numerical Simulation of Oblique Shock Waves via Finite Volume Discretization
 
-> **Research Project | BITS Pilani | December 2025–Present**
-> Thilak S · Under Prof. Anirudh Singh Rana
+> **Research Project | BITS Pilani | Jan 2026–Present** \
+> Thilak S · Under Prof. Anirudh Singh Rana \
 > Department of Mechanical Engineering, BITS Pilani
-> Presented to: Prof. Anirudh Singh Rana · Prof. Aasish Tiwari · Prof. B. K. Sharma
 
 A high-fidelity **2D Compressible Navier-Stokes Solver** developed in MATLAB using the Finite Volume Method (FVM) with Rusanov (Local Lax-Friedrichs) flux scheme to simulate supersonic flow over a wedge at Mach 2.5. Unlike standard Euler-based solvers, this implementation captures viscous-inviscid interactions and boundary layer growth critical for aerodynamic analysis at high Mach numbers.
 
@@ -391,8 +390,8 @@ CONVERGED at step ~24,000
 
 ---
 
-**Author:** Thilak S | Department of Mechanical Engineering, BITS Pilani
-**Supervisor:** Prof. Anirudh Singh Rana
-**Period:** December 2025–Present
-**Status:** Active Development
+**Author:** Thilak S | Department of Mechanical Engineering, BITS Pilani \
+**Supervisor:** Prof. Anirudh Singh Rana \
+**Period:** January 2026–Present \
+**Status:** Active Development \
 **Contact:** f20220771@pilani.bits-pilani.ac.in

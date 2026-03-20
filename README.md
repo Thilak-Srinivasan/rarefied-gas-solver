@@ -100,7 +100,7 @@ $$\hat{F}_{i+1/2} = \frac{1}{2}\left[F(U_L) + F(U_R)\right] - \frac{1}{2}\lambda
 
 The stabilization parameter (spectral radius):
 
-$$\lambda_{max} = \max\left\{(|\mathbf{u}\cdot\hat{n}| + a)_L,\;(|\mathbf{u}\cdot\hat{n}| + a)_R\right\}$$
+$$\lambda_{max} = \max\Big( |\mathbf{u}\cdot\hat{n}| + a \Big)_{L,R}$$
 
 ### 3. Viscous Term Discretization: Central Differencing (2nd Order)
 

@@ -408,7 +408,7 @@ The current solver diverges at step 12,868. Root cause analysis from the weekly 
 ---
 
 **Author:** Thilak S | Department of Mechanical Engineering, BITS Pilani \
-**Supervisor:** Prof. Anirudh Singh Rana \
+**Supervisor:** Prof. Anirudh Singh Rana | Associate Professor | Department of Mathematics, BITS Pilani \
 **Period:** January 2026–Present \
 **Status:** Active Development \
 **Contact:** f20220771@pilani.bits-pilani.ac.in

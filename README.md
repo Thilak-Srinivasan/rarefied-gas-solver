@@ -1,6 +1,6 @@
 # Numerical Simulation of Oblique Shock Waves via Finite Volume Discretization
 
-> **Research Project | BITS Pilani | Jan 2026–Present** \
+> **Research Project | BITS Pilani | January 2026–Present** \
 > Thilak S · Under Prof. Anirudh Singh Rana \
 > Department of Mechanical Engineering, BITS Pilani
 
@@ -203,8 +203,8 @@ Freestream conditions begin to perturb at the wedge apex. Shock formation has no
 ### Step 6,000 — Shock Formation & Stabilization
 Oblique shock angle stabilizes at approximately 32° to the freestream. Clear jumps in density, pressure, and temperature across the shock. Mach number contours confirm the weak shock solution (M₂ > 1). Velocity vectors show early boundary layer development along the wall.
 
-### Step 24,000 — Fully Converged Solution
-Crisp shock structure with stable geometry. Fully developed viscous boundary layer with no-slip condition enforced at the wedge. Shock angle slightly displaced from theoretical inviscid value due to viscous displacement thickness — the key viscous-inviscid interaction absent in Euler-based simulations. Numerical residuals below 10⁻⁷.
+### Step 12,500 — Last Stable State (Divergence at Step 12,868)
+Oblique shock structure well-formed with shock angle ≈ 36.65°. Velocity vectors confirm correct 15° flow deflection and no-slip enforcement at the wedge surface. Validation against NACA 1135 benchmarks gives errors < 1% across all flow properties. Divergence occurs at step 12,868 due to a local CFL violation near the wedge apex where large pressure and shear gradients tighten the stability margin — the primary challenge identified for future work. The residual remained flat at ~1.0 throughout without monotonic decay, indicating the viscous stability criterion was not sufficiently enforced in the timestep calculation.
 
 ---
 
@@ -245,35 +245,37 @@ A major development challenge was resolving the physically incorrect velocity ve
 
 ## Results
 
-### Flow Field Contours — Step 24,000 (Converged)
+### Flow Field Contours — Step 12,500 (Last Stable State)
 
 <p align="center">
-  <img src="step_24000.png" alt="Converged solution at step 24000" width="900"/>
+  <img src="step_12500.png" alt="Flow field at step 12500" width="900"/>
   <br>
-  <em>Fig. 1: Final converged flow field — Density, Pressure, Temperature, Mach Number, Speed, Velocity at step 24,000 (Ma = 2.5, θ = 15°, Re = 100)</em>
+  <em>Fig. 1: Flow field at step 12,500 — last stable state before divergence at step 12,868 (Ma = 2.5, θ = 15°, Re = 100). Shows Density, Pressure, Temperature, Mach Number, Speed, and Velocity (Deflection = 15°).</em>
 </p>
 
-**Flow features captured:**
-- **Oblique Shock (β ≈ 37°):** Sharp density jump across the discontinuity
-- **Post-Shock Pressure:** Uniform high pressure region on wedge surface
-- **Thermal Layer:** Viscous heating concentrated near the wall boundary
-- **Weak Shock Solution:** Flow remains supersonic downstream (M₂ > 1)
+**Flow features captured at step 12,500:**
+- **Oblique Shock (β ≈ 36.65°):** Shock structure forming with density jump visible across the discontinuity
+- **Post-Shock Pressure:** Elevated pressure region developing on wedge surface
+- **Thermal Layer:** Viscous heating beginning to concentrate near the wall boundary
+- **Weak Shock Solution:** Flow remains supersonic downstream (M₂ ≈ 1.881)
+- **Velocity Deflection:** Flow correctly deflected by 15° at wedge apex with no-slip enforced at wall
+- **Divergence Note:** Solver diverges at step 12,868 due to local CFL violation near wedge apex — residual never decays below ~1.0 (flat history). This is the primary stability issue being addressed in ongoing work.
 
 ---
 
-### Convergence History
+### Convergence History — Divergence at Step 12,868
 
 <p align="center">
   <img src="convergence.png" alt="Convergence history" width="700"/>
   <br>
-  <em>Fig. 2: L² residual history — monotonic decay over 24,000 iterations to target tolerance 10⁻⁶</em>
+  <em>Fig. 2: L² residual history — residual remains flat at ~1.0 throughout, with divergence (NaN/Inf) occurring at step 12,868</em>
 </p>
 
-**Convergence behaviour:**
-- Residuals reduced by **6 orders of magnitude**
-- Steady-state achieved at step ~24,000
-- CFL = 0.20 maintains stability throughout
-- Explicit time-stepping effectively resolves transient shock formation
+**Stability analysis:**
+- Residual **flat at ~1.0** — no monotonic decay observed (contrast with target 10⁻⁶)
+- Divergence at step **12,868** triggered by NaN/Inf propagating from wedge apex
+- Root cause: local effective wave speeds grow near the wall at later times, causing a local CFL violation even when global CFL = 0.20
+- Runtime: **53.87 seconds** before divergence
 
 ---
 
@@ -313,11 +315,8 @@ The solver captures the full SBLI physics:
 ```
 rarefied-gas-solver/
 ├── nsf_solver_corrected.m          # Main MATLAB solver
-├── outputs/
-│   ├── step_1000.png               # Initial transient phase
-│   ├── step_6000.png               # Shock formation & stabilization
-│   ├── step_24000.png              # Final converged solution
-│   └── convergence.png             # Residual history plot
+├── step_12500.png                  # Last stable flow field (step 12,500)
+├── convergence.png                 # Residual history (flat — divergence at 12,868)
 ├── docs/
 │   ├── week1_report.pdf            # Week 1: Theory & governing equations
 │   ├── week2_report.pdf            # Week 2: Implementation & results
@@ -352,10 +351,28 @@ Grid: 120 x 80 (dx=0.0672, dy=0.0506)
 Mach: 2.50, Wedge Angle: 15°
 Reynolds: 100.0, CFL: 0.20
 ========================================
-Step    500: Residual = x.xxxxxxe-xx, dt = x.xxxxxxe-xx
+Step    500: Residual = 1.079032e+00, dt = 7.303151e-04, CFL = 0.200
+Step   1000: Residual = 1.119327e+00, dt = 7.709230e-04, CFL = 0.200
 ...
-CONVERGED at step ~24,000
+Step  12500: Residual = 1.099575e+00, dt = 7.279912e-04, CFL = 0.200
+
+x DIVERGED at step 12868!
+Total computation time: 53.87 seconds
 ```
+
+---
+
+## Numerical Stability Issue & Planned Fixes
+
+The current solver diverges at step 12,868. Root cause analysis from the weekly progress report:
+
+**Error:** NaN/Inf values propagate from the wedge apex due to large local pressure and shear gradients exceeding the stability margin, triggering a `Matrix dimensions must agree` runtime error downstream.
+
+**Planned mitigations:**
+- **Stricter viscous CFL:** Reduce CFL from 0.20 → 0.10 in the late quasi-steady regime, or implement a dual inviscid+viscous timestep condition
+- **Grid refinement at apex:** Finer cells near the wedge leading edge to reduce local gradient magnitudes
+- **Runtime NaN/Inf checks:** Gracefully detect and locally damp the update before global blow-up occurs
+- **Adaptive time-stepping:** Reduce dt automatically when residual growth is detected
 
 ---
 

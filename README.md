@@ -314,14 +314,9 @@ The solver captures the full SBLI physics:
 
 ```
 rarefied-gas-solver/
-├── nsf_solver_corrected.m          # Main MATLAB solver
+├── nsf_solver_main.m          # Main MATLAB solver
 ├── step_12500.png                  # Last stable flow field (step 12,500)
 ├── convergence.png                 # Residual history (flat — divergence at 12,868)
-├── docs/
-│   ├── week1_report.pdf            # Week 1: Theory & governing equations
-│   ├── week2_report.pdf            # Week 2: Implementation & results
-│   ├── weekly_progress.pdf         # Weekly progress summary
-│   └── midsem_presentation.pdf     # Mid-semester presentation
 └── README.md
 ```
 
